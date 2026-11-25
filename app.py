@@ -7,7 +7,7 @@ products = [
     ("bag", 25000),
     ("cup", 6000)
 ]
-names  = [i[0] for i in products]
+names = [i[0] for i in products]
 price = [i[1] for i in products]
 
 def quote(price, quantity, shipping = 3000):
@@ -15,12 +15,10 @@ def quote(price, quantity, shipping = 3000):
     if subtotal >= 30000 and is_member:
         shipping = 0
         total = subtotal + shipping
-        # print("무료배송")
-        print(total)
+        print("무료배송")
     else:
         total = subtotal + shipping
-        # print("배송비 3000원")
-        print(total)
+        print("배송비 3000원")
     return total
 
 def sum_values(*args):
@@ -58,21 +56,37 @@ while True:
         is_member = input("회원 여부: ").strip()
         if is_member == "y":
             is_member = True
-        elif is_member == "n":
-            is_member = False
         else:
             is_member = False
         product = input("주문할 상품: ").split(",")
         amounts = input("수량: ").split(",")
-        for i in amounts:
+
+        order_totals = []
+        for i in range(len(product)):
+            n = product[i].strip()
+            amount = amounts[i].strip()
             try:
-                for n in product:
-                    if n in names:
-                        names_idx = names.index(n)
-                        prices_idx = price[names_idx]
+                if n in names:
+                    names_idx = names.index(n)
+                    prices_idx = price[names_idx]
+                    total = quote(prices_idx, int(amount))
+                    order_totals.append(total)
+                else:
+                    print("등록되지 않은 상품입니다")
             except ValueError:
                 print("정수를 입력하세요")
-            quote(prices_idx, int(i))
+        final_total = sum_values(*order_totals)
+        print(f"총 주문 금액: {final_total}")
+
+        # for i in amounts:
+        #     try:
+        #         for n in product:
+        #             if n in names:
+        #                 names_idx = names.index(n)
+        #                 prices_idx = price[names_idx]
+        #     except ValueError:
+        #         print("정수를 입력하세요")
+        #     quote(prices_idx, int(i))
 
         print("================================")
 
