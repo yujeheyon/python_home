@@ -10,5 +10,7 @@ rows = [
 df = pd.DataFrame(rows)
 st.dataframe(df, hide_index = True)
 st.bar_chart(df.set_index("subject")["score"])
-df["avg"] = df["score"].sum() / 3
-st.metric("평균: ", f"{df["avg"]}점")
+
+# 평균 계산
+avg = df["score"].mean()
+st.metric("평균: ", f"{avg:.1f}점")
