@@ -1,5 +1,5 @@
 import streamlit as st
 
-st.title("나의 학습 목표")
-st.write("파이썬 문법을 익힙니다.")
-st.write("문서를 찾는 AI 앱을 만듭니다.")
+st.title("학습 목표")
+st.write("파이썬으로 streamlit 문법 익히기")
+st.write("졸지 않고 열심히 듣기")
